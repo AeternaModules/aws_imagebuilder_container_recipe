@@ -36,7 +36,7 @@ output "imagebuilder_container_recipes_encrypted" {
 }
 output "imagebuilder_container_recipes_instance_configuration" {
   description = "Map of instance_configuration values across all imagebuilder_container_recipes, keyed the same as var.imagebuilder_container_recipes"
-  value       = { for k, v in aws_imagebuilder_container_recipe.imagebuilder_container_recipes : k => v.instance_configuration if v.instance_configuration != null && length(v.instance_configuration) > 0 }
+  value       = { for k, v in aws_imagebuilder_container_recipe.imagebuilder_container_recipes : k => one(v.instance_configuration) if v.instance_configuration != null && length(v.instance_configuration) > 0 }
 }
 output "imagebuilder_container_recipes_kms_key_id" {
   description = "Map of kms_key_id values across all imagebuilder_container_recipes, keyed the same as var.imagebuilder_container_recipes"
@@ -76,7 +76,7 @@ output "imagebuilder_container_recipes_tags_all" {
 }
 output "imagebuilder_container_recipes_target_repository" {
   description = "Map of target_repository values across all imagebuilder_container_recipes, keyed the same as var.imagebuilder_container_recipes"
-  value       = { for k, v in aws_imagebuilder_container_recipe.imagebuilder_container_recipes : k => v.target_repository if v.target_repository != null && length(v.target_repository) > 0 }
+  value       = { for k, v in aws_imagebuilder_container_recipe.imagebuilder_container_recipes : k => one(v.target_repository) if v.target_repository != null && length(v.target_repository) > 0 }
 }
 output "imagebuilder_container_recipes_version" {
   description = "Map of version values across all imagebuilder_container_recipes, keyed the same as var.imagebuilder_container_recipes"
